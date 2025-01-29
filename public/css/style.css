@@ -1,0 +1,123 @@
+
+/* General Styling */
+body {
+    font-family: "Plus Jakarta Sans", serif !important;
+    font-optical-sizing: auto;
+    font-weight: 400; /* or 'normal' */
+    font-style: normal;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    flex: 1;
+}
+
+a{
+    text-decoration: none;
+}
+/* -------------------------------------------------------------------------- */
+
+/* Navbar Styling */
+.navbar {
+    height: 5rem;
+    background-color: white;
+}
+
+/* Icon Styling */
+.fa-compass {
+    color: #fe424d;
+    font-size: 2rem;
+}
+
+/* Navigation Link Styling */
+.nav-link {
+    color: #222222 !important;
+}
+
+/* -------------------------------------------------------------------------- */
+
+/* Footer Links Styling */
+.f-info-links a {
+    text-decoration: none;
+    color: #222222;
+    margin-right: 15px;
+}
+
+.f-info-links a:hover {
+    text-decoration: underline;
+}
+
+/* Footer Information Styling */
+.f-info {
+    text-align: center;
+    height: 8rem;
+    display: flex;
+    background-color: #ebebeb;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: space-evenly;
+}
+
+.f-info-socials, .f-info-links, .f-info-brand {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.f-info-socials i {
+    font-size: 1.2rem;
+    margin-right: 1rem;
+}
+
+
+/* Card Styling */
+.card {
+    border: none !important;
+    margin-bottom: 2rem;
+    /* margin-right: 1rem; */
+}
+
+.card-img-top {
+    border-radius: 2rem !important;
+    width: 100%;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 0;
+}
+
+.card-text p {
+    font-weight: 400 !important;
+}
+
+.row {
+    margin-top: 1rem;
+}
+
+.listing-link {
+    text-decoration: none;
+}
+
+/* Card Overlay Styling */
+.card-img-overlay {
+    opacity: 0;
+}
+
+.card-img-overlay:hover {
+    opacity: 0.2;
+    background-color: white;
+}
+
+/* Show Image Styling */
+.show-image {
+    height: 30vh;
+    object-fit: cover;
+}
+
+/* -------------------------------------------------------------------------- */
+
+
