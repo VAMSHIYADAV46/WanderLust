@@ -17,6 +17,7 @@ body {
 a{
     text-decoration: none;
 }
+
 /* -------------------------------------------------------------------------- */
 
 /* Navbar Styling */
@@ -72,12 +73,13 @@ a{
     margin-right: 1rem;
 }
 
+/* -------------------------------------------------------------------------- */
 
 /* Card Styling */
 .card {
     border: none !important;
     margin-bottom: 2rem;
-    /* margin-right: 1rem; */
+    margin-right: 1rem;
 }
 
 .card-img-top {
@@ -120,4 +122,33 @@ a{
 
 /* -------------------------------------------------------------------------- */
 
+/* Buttons Styling */
+.back-button {
+    border: none !important;
+}
+
+.submit-button {
+    background-color: #fe424d;
+    border: none !important;
+    /* margin-left: 1rem; */
+}
+
+/* Delete Button Styling */
+.delete-button {
+    border: none !important;
+    margin-left: 35rem;
+}
+
+/* Button Container Styling */
+.button-container {
+    display: flex;
+}
+
+.delete-button:hover{
+    background-color: #fff;
+}
+
+/* .btn {
+    margin-left: 1rem;
+} */
 
