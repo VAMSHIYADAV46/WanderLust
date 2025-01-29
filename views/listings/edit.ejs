@@ -38,7 +38,12 @@
           <input name="listing[location]" value="<%= listing.location %>" type="text" id="location" class="form-control" />
         </div>
     
-        <button class="btn submit-button">Edit</button>
+
+        <div class="button-container">
+          <button class="btn submit-button">Edit</button>
+          <button class="btn back-button" onclick="window.location.href='/listings'">Back</button>
+        </div>
+        
     
       </form>
     </div>

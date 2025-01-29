@@ -136,7 +136,7 @@ a{
 /* Delete Button Styling */
 .delete-button {
     border: none !important;
-    margin-left: 35rem;
+    margin-left: 32rem;
 }
 
 /* Button Container Styling */
@@ -148,7 +148,17 @@ a{
     background-color: #fff;
 }
 
+.back-button{
+    background-color: black;
+    color: white;
+    margin-left: 1rem;
+}
+
 /* .btn {
     margin-left: 1rem;
 } */
 
+
+.btn{
+    color: white;
+}
