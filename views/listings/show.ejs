@@ -2,11 +2,11 @@
   <body>
     <div class="row">
       <div class="col-8 offset-2">
-        <h3>Listing Details :</h3>
+        <h3><p class="card-text"><b>&nbsp;&nbsp;<%= listing.title %></b></p></h3>
         <div class="card">
           <img src="<%= listing.image.url%>" class="card-img-top show-image" alt="listing_image">
           <div class="card-body">
-            <p class="card-text"><b><%= listing.title %></b></p>
+            
           </div>
         </div>
       
@@ -37,10 +37,24 @@
             <button type="submit" class="btn btn-warning delete-button">Delete this Listing</button>
           </form>
         </div>
-        
-    
 
-    
+        <hr>
+        <div >
+          <h4>Leave a Review</h4>
+          <form action="/listings/<%= listing._id %>/reviews" method="post"  novalidate class="needs-validation">
+            <div>
+              <label for="rating" class="form-label"> Range</label>
+              <input type="range" name="review[rating]" class="form-range mb-3" min="1" max="5" id="rating">
+            </div>
+            <div>
+              <label for="comment" class="form-label"></label>Comment</label>
+              <textarea name="review[comment]" id="comment" cols="30" rows="5" class="form-control mb-3" required></textarea>
+              <div class="invalid-feedback mb-3">Please enter a comment.</div>
+            </div>
+            
+            <button type="submit" class="btn-outline-dark sbtn btn">Submit</button>
+          </form>
+        </div>
       </div>
     </div>
     <br>
