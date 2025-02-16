@@ -76,7 +76,7 @@ a{
 /* -------------------------------------------------------------------------- */
 
 /* Card Styling */
-.card {
+.listing-card {
     border: none !important;
     margin-bottom: 2rem;
     margin-right: 1rem;
@@ -170,3 +170,30 @@ a{
 }
 /* error page */
 
+.review-card {
+    border: 1px solid black !important;
+    
+}
+
+
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+.stars {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: start;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+.stars input {
+    display: none;
+}
+.stars label {
+    color: lightgray;
+    transition: color 0.3s;
+}
+.stars input:checked ~ label,
+.stars label:hover,
+.stars label:hover ~ label {
+    color: gold;
+}
