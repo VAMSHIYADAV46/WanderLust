@@ -2,31 +2,53 @@ const express = require("express");
 const app = express();
 const user = require("./Routes/user.js")
 const post = require("./Routes/posts.js")
-const sesion = require("express-session")
+const session = require("express-session"); 
+const flash = require("connect-flash")
+const path = require("path");
+const ejsMate = require("ejs-mate")
 
 
-app.use(sesion({
+
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+app.engine('ejs', ejsMate);
+app.use(flash());
+
+
+
+app.use(session({
     secret: "mysecret key",
     resave:false,
     saveUninitialized:true
 }))
 
 
+app.use((req,res,next)=>{
+    res.locals.successMsg = req.flash("success")
+    res.locals.errorMsg = req.flash("error")
+    next();
+})
+
+
+
 app.get("/register",(req,res)=>{
-    let {name}=req.query
-
-    if (!name) {
-        return res.status(400).send("Name is required");
-    }
-
+    let {name="anonymous"}=req.query
     req.session.name = name;
-    console.log(req.session)
-    res.send(name)
+    if ( name == "anonymous") {
+        req.flash("error","USER NOT  FOUND")
+    }
+    else{
+        req.flash("error","USER FOUND")
+    }
+    // console.log(req.session)
+    // res.send(name)
+    res.redirect("/greet")
+
 })
 
 
 app.get("/greet",(req,res)=>{
-    res.send(`Hello ${req.session.name} !`)
+    res.render("index.ejs",{name : req.session.name })
 })
 
 

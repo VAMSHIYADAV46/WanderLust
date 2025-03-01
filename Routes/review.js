@@ -37,6 +37,7 @@ const validateReview = (req,res,next) => {
     
     
     await listing.save()
+    req.flash("success","Review Added Successfully")
     res.redirect(`/listings/${id}`)
   }))
   
@@ -47,6 +48,7 @@ const validateReview = (req,res,next) => {
     let{id,reviewid}=req.params;
     await Listing.findByIdAndUpdate(id , {$pull:{reviews : reviewid}})  //it deletes from listing tooooo important
     await Review.findOneAndDelete(reviewid)
+    req.flash("success","Review Deleted Successfully")
   
     res.redirect(`/listings/${id}`)
   }))

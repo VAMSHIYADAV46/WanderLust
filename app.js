@@ -9,12 +9,19 @@ const wrapAsync = require("./utils/wrapAsync.js")
 const ExpressError = require("./utils/ExpressError.js")
 const Review = require("./models/review.js");
 const {listingSchema,reviewSchema} = require("./schema.js")
+const session = require("express-session")
+const flash = require("connect-flash")
+const passport = require("passport")
+const LocalStrategy =require("passport-local")
+const User = require("./models/user.js") 
 
 
-const listing = require("./Routes/listing.js");
-const review = require("./Routes/review.js");
+const listingRouter = require("./Routes/listing.js");
+const reviewRouter = require("./Routes/review.js");
+const userRouter = require("./Routes/user.js");
 
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+
 
 
 
@@ -37,7 +44,16 @@ app.use(methodOverride("_method"));
 app.engine('ejs', ejsMate);
 app.use(express.static(path.join(__dirname,"/public")));
 
-// app.use(express.static(path.join(__dirname, "public")));
+sessionOptions = {
+  secret: "mysecret key",
+  resave:false,
+  saveUninitialized:true,
+  cookie:{
+    express: Date.now() + 7 * 24 * 60 * 60 * 1000,
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+    httpOnly :true
+  }
+}
 
 
 app.get("/", (req, res) => {
@@ -46,9 +62,47 @@ app.get("/", (req, res) => {
 
 
 
+app.use(session(sessionOptions))
+app.use(flash())
 
-app.use("/listings",listing)
-app.use("/listings/:id/reviews",review)
+
+
+app.use(passport.initialize())
+app.use(passport.session())
+passport.use(new LocalStrategy(User.authenticate()))
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
+app.use((req,res,next)=>{
+  res.locals.success = req.flash("success")
+  res.locals.error = req.flash("error");
+  next();
+})
+
+
+
+
+// app.get("/demouser",async(req,res)=>{
+//   // let fakeUser = new User({
+//   //   email : "nanidx48@gmail.com",
+//   //   username : "naniluuuuuu"
+//   // })
+
+//   // let registeredUser =await User.register(fakeUser, "nani0541X")
+//   res.send(registeredUser)
+// })
+
+
+
+app.use("/listings",listingRouter)
+app.use("/listings/:id/reviews",reviewRouter)
+app.use("/",userRouter)
+
+
+
+
 
   
 // app.get("/testListing", async (req, res) => {
@@ -81,6 +135,7 @@ app.use((err,req,res,next)=>{
 app.listen(8080, () => {
   console.log("server is listening to port 8080");
 });
+
 
 
 
