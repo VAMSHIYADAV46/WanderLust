@@ -7,6 +7,13 @@ const {listingSchema,reviewSchema} = require("../schema")
 const { isLoggedIn , isOwner,validateListing} = require("../middleware.js");
 const listingController = require("../controllers/listing.js")
 
+const multer  = require('multer')
+const {storage} = require("../cloudConfig.js")
+const upload = multer({ storage })
+
+
+
+
 
 
 //Index Route
@@ -24,9 +31,11 @@ router.get("/",wrapAsync(listingController.index));
   //Create Route
   router.post("/", 
     isLoggedIn,
+   
+    upload.single('listing[image]'),
     validateListing ,
     wrapAsync(listingController.createListing));
-  
+
   
   //Edit Route
   router.get("/:id/edit",isLoggedIn,isOwner, wrapAsync(listingController.renderEditForm));
