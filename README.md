@@ -37,59 +37,64 @@ To run this project locally:
    ```bash
    git clone https://github.com/VAMSHIYADAV46/WanderLust.git
    cd WanderLust
-Install dependencies:
+   ```
 
-bash
-Copy
-Edit
-npm install
-Set up environment variables:
+2. **Install dependencies**:
 
-Create a .env file in the root directory and add the following variables:
+   ```bash
+   npm install
+   ```
 
-env
-Copy
-Edit
-CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_KEY=your_cloudinary_key
-CLOUDINARY_SECRET=your_cloudinary_secret
-Start the application:
+3. **Set up environment variables**:
 
-bash
-Copy
-Edit
-npm start
-The application will be accessible at http://localhost:3000.
+   Create a `.env` file in the root directory and add the following variables:
 
-Usage
-Browse Listings: View all available hotel listings on the homepage.
-Create a Listing: Sign up or log in to add a new hotel.
-Edit/Delete Listings: Manage your listings through the user dashboard.
-Add Reviews: Share your experiences by adding reviews to hotel listings.
-Contributing
+   ```env
+   CLOUDINARY_CLOUD_NAME=your_cloud_name
+   CLOUDINARY_KEY=your_cloudinary_key
+   CLOUDINARY_SECRET=your_cloudinary_secret
+   ```
+
+4. **Start the application**:
+
+   ```bash
+   npm start
+   ```
+
+   The application will be accessible at [http://localhost:3000](http://localhost:3000).
+
+## Usage
+
+- **Browse Listings**: View all available hotel listings on the homepage.
+- **Create a Listing**: Sign up or log in to add a new hotel.
+- **Edit/Delete Listings**: Manage your listings through the user dashboard.
+- **Add Reviews**: Share your experiences by adding reviews to hotel listings.
+
+## Contributing
+
 Contributions are welcome! To contribute:
 
-Fork the repository.
+1. **Fork the repository**.
+2. **Create a new branch**:
+   
+   ```bash
+   git checkout -b feature-name
+   ```
 
-Create a new branch:
+3. **Make your changes and commit them**:
 
-bash
-Copy
-Edit
-git checkout -b feature-name
-Make your changes and commit them:
+   ```bash
+   git commit -m "Description of changes"
+   ```
 
-bash
-Copy
-Edit
-git commit -m "Description of changes"
-Push to your forked repository:
+4. **Push to your forked repository**:
 
-bash
-Copy
-Edit
-git push origin feature-name
-Open a pull request detailing your changes.
+   ```bash
+   git push origin feature-name
+   ```
 
-License
+5. **Open a pull request** detailing your changes.
+
+## License
+
 This project is open-source and available under the MIT License.
