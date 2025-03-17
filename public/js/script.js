@@ -17,3 +17,22 @@
       }, false)
     })
   })()
+
+
+
+//-----------------------------------------------------------------------------------------------------------//
+
+//preview button
+
+document.getElementById("previewBtn").addEventListener("click", function () {
+  const imageContainer = document.getElementById("imageContainer");
+  const button = document.getElementById("previewBtn");
+
+  if (imageContainer.style.display === "none") {
+      imageContainer.style.display = "block";
+      button.textContent = "Hide Preview"; // Change button text
+  } else {
+      imageContainer.style.display = "none";
+      button.textContent = "Preview"; // Reset button text
+  }
+});

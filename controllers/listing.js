@@ -2,7 +2,7 @@
 const Listing = require("../models/listing")
 
 
-
+//Index Route
 module.exports.index= async (req, res) => {
     const allListings = await Listing.find({});
     res.render("listings/index.ejs", { allListings });
@@ -10,12 +10,13 @@ module.exports.index= async (req, res) => {
 
 
 
+//New Route
 module.exports.renderNewForm =  (req, res) => {
     res.render("listings/new.ejs");
   }
 
 
-
+//Show Route
 module.exports.showListing = async (req, res) => {
     let { id } = req.params;
     const listing = await Listing.findById(id).populate("reviews").populate("owner").populate({
@@ -29,23 +30,29 @@ module.exports.showListing = async (req, res) => {
   }
 
 
-module.exports.createListing = async (req, res,next) => {
-
-    let url = req.file.path;
-    let filename = req.file.filename;
-
+//Create Route
+module.exports.createListing = async (req, res, next) => {
     const newListing = new Listing(req.body.listing);
-    newListing.owner = req.user._id;                   // this for the current user
-    newListing.image = { url, filename };
-    console.log(req.body.listing)
+    newListing.owner = req.user._id; // Assign the current user
+
+    // Check if a file was uploaded
+    if (req.file) {
+        newListing.image = {
+            url: req.file.path,
+            filename: req.file.filename
+        };
+    }
+
+    console.log(req.body.listing);
     await newListing.save();
-    req.flash("success","New Listing Has Added")
+    req.flash("success", "New Listing Has Been Added");
     res.redirect("/listings");
-
-}
-
+};
 
 
+
+
+//Edit Route
 module.exports.renderEditForm = async (req, res) => {
     let { id } = req.params;
     const listing = await Listing.findById(id);
@@ -53,16 +60,27 @@ module.exports.renderEditForm = async (req, res) => {
   }
 
 
+//Update Route
 module.exports.updateListing = async (req, res) => {
     let { id } = req.params;
-      if(!req.body.listing){
-        throw new ExpressError(400,"SEND VALID DATA")
-      }
-    await Listing.findByIdAndUpdate(id, { ...req.body.listing });
+    let listing = await Listing.findByIdAndUpdate(id, { ...req.body.listing });
+
+    if(typeof req.file !== "undefined"){
+    let url = req.file.path;
+    let filename = req.file.filename;
+
+    listing.image = {url, filename}
+
+    listing.save();
+    }
     req.flash("success","Listing Has Updated")
     res.redirect(`/listings/${id}`);
   }
 
+
+
+
+//Delete Route
 module.exports.deleteListing = async (req, res) => {
     let { id } = req.params;
     let deletedListing = await Listing.findByIdAndDelete(id);

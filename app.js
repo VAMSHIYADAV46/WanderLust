@@ -135,11 +135,11 @@ app.all("*",(req,res,next)=>{
 })
 
 
-app.use((err,req,res,next)=>{
-  let{status=500,message="SOMETHING WENT WRONG"}=err
-  res.render("listings/error.ejs",{err})
-  // res.status(status).send(message);
-})
+// app.use((err,req,res,next)=>{
+//   let{status=500,message="SOMETHING WENT WRONG"}=err
+//   res.render("listings/error.ejs",{err})
+//   // res.status(status).send(message);
+// })
 
 
 app.listen(8080, () => {
