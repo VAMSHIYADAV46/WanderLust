@@ -1,6 +1,10 @@
 
 const Listing = require("../models/listing")
 
+if (process.env.NODE_ENV != "production") {
+  require("dotenv").config();
+}
+
 
 //Index Route
 module.exports.index= async (req, res) => {
@@ -26,7 +30,7 @@ module.exports.showListing = async (req, res) => {
       }
   });
 
-    res.render("listings/show.ejs", { listing });
+    res.render("listings/show.ejs", { listing , GOOGLE_API_KEY: process.env.GOOGLE_MAP_API,LOCATIONIQ_ACCESS_TOKEN: process.env.LOCATIONIQ_ACCESS_TOKEN});
   }
 
 

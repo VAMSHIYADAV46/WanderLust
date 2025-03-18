@@ -400,3 +400,29 @@ a{
   margin-top: 1rem;
   font-size: 1rem;
 }
+
+
+/* --------------------------------------------------------------------------------------------------- */
+
+/* map */
+
+ /* Set the size of the map */
+ #map {
+  height: 600px;
+  width: 100%;
+  /* margin: 40px 40px 0 40px; */
+  margin-top: 40px;
+  border-radius: 15px;
+}
+/* Style the input field */
+#pac-input {
+  margin-top: 10px;
+  width: 300px;
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 15px;
+  margin-left: 45px;
+
+}
+
+

@@ -16,6 +16,8 @@ const upload = multer({ storage })
 
 
 
+
+
 //Index Route
 router.get("/",wrapAsync(listingController.index));
   
