@@ -23,19 +23,30 @@
 //-----------------------------------------------------------------------------------------------------------//
 
 //preview button
-
-document.getElementById("previewBtn").addEventListener("click", function () {
-  const imageContainer = document.getElementById("imageContainer");
-  const button = document.getElementById("previewBtn");
-
-  if (imageContainer.style.display === "none") {
-      imageContainer.style.display = "block";
-      button.textContent = "Hide Preview"; // Change button text
-  } else {
-      imageContainer.style.display = "none";
-      button.textContent = "Preview"; // Reset button text
+document.addEventListener("DOMContentLoaded", function () {
+  const previewBtn = document.getElementById("previewBtn");
+  if (!previewBtn) {
+      console.error("Error: previewBtn not found in the document!");
+      return;
   }
+
+  previewBtn.addEventListener("click", function () {
+      const imageContainer = document.getElementById("imageContainer");
+      if (!imageContainer) {
+          console.error("Error: imageContainer not found!");
+          return;
+      }
+
+      if (imageContainer.style.display === "none") {
+          imageContainer.style.display = "block";
+          previewBtn.textContent = "Hide Preview";
+      } else {
+          imageContainer.style.display = "none";
+          previewBtn.textContent = "Preview";
+      }
+  });
 });
+
 
 
 

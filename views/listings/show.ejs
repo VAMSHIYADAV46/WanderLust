@@ -151,6 +151,7 @@
         const infoWindow = new google.maps.InfoWindow({
           content: `<h6><%= listing.title %></h6>
           <p><%= listing.description %></p>`,
+          disableAutoPan: true,
           maxHeight: 100,
           maxWidth: 400 // Adjust the width as needed
         });

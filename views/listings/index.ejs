@@ -1,33 +1,396 @@
 <% layout('/layouts/boilerplate') -%>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .filter-container {
+      position: relative;
+      padding: 10px 0;
+      max-width: 76%;
+      /* margin: 0 auto; */
+    }
+
+    .icon-container {
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    .filter-scroll {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding: 10px;
+      scrollbar-width: none;
+      /* Firefox */
+      -ms-overflow-style: none;
+      /* IE and Edge */
+      min-height: 80px;
+      /* Minimum height */
+      align-items: center;
+    }
+
+    .filter-scroll::-webkit-scrollbar {
+      display: none;
+      /* Chrome, Safari, Opera */
+    }
+
+    .filter-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 80px;
+      text-align: center;
+      opacity: 0.7;
+    }
+
+    .filter-item:hover {
+      opacity: 1;
+    }
+
+    .filter-item .emoji {
+      font-size: 20px;
+      margin-bottom: 2px;
+    }
+
+    .filter-item i {
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+
+    .filter-item p {
+      font-size: 0.8rem;
+    }
+
+    .arrow-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: #333;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.3s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .arrow-btn.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .arrow-btn:hover {
+      background-color: #555;
+    }
+
+    .left-arrow {
+      left: 5px;
+      margin-bottom: 3px;
+    }
+
+    .right-arrow {
+      right: 5px;
+      margin-bottom: 3px;
+    }
+
+    #right-arrow {
+      margin-bottom: 1rem;
+    }
+
+    #left-arrow {
+      margin-bottom: 1rem;
+    }
+
+    .switch-toggel{
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      margin-left: 2.5rem;
+      border: 1.8px solid black;
+      height: 3.5rem;
+      border-radius: 1rem;
+      padding: 1rem;
+    }
+
+    .tax-info{
+      display: none;
+    }
+
+    .rightArrow{
+      display: block;
+    }
+  </style>
+
   <body>
-    <h3>All Listings</h3>
+    <!-- <h3>All Listings</h3> -->
     <!-- <form method="GET" action="/listings/new">
       <button>Create New Listing</button>
     </form> -->
     <!-- <button onclick="window.location.href='/listings/new'" >Create New Listing</button> -->
-    
+
+
+    <!-- <div id="filter">
+      <div class="filter">
+        <div><i class="fa-solid fa-fire"></i></div>
+        <p>Trending</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-bed"></i></div>
+        <p>Rooms</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-mountain-city"></i></div>
+        <p>Hill Stations</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-mountain-sun"></i></div>
+        <p>Mountains</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-umbrella-beach"></i></div>
+        <p>Beaches</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-campground"></i></div>
+        <p>Camping</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-chess-knight"></i></div>
+        <p>Luxury Resorts</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-tree"></i></div>
+        <p>Forests</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-tractor"></i></div>
+        <p>Farms</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-building-columns"></i></div>
+        <p>Heritage</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-snowflake"></i></div>
+        <p>Snow Places</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-water"></i></div>
+        <p>Rivers</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-hiking"></i></div>
+        <p>Adventure</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-tree"></i></div>
+        <p>Treehouse</p>
+      </div>
+      <div class="filter">
+        <div><i class="fa-solid fa-chess-rook"></i></div>
+        <p>Castles</p>
+      </div>
+    </div> -->
+
+    <div class="icon-container">
+      <div class="filter-container">
+        <!-- Left Arrow -->
+        <div id="left-arrow" class="arrow-btn left-arrow">
+          <i class="fa-solid fa-chevron-left"></i>
+        </div>
+
+        <!-- Filter Items -->
+        <div id="filter-scroll" class="filter-scroll">
+          <div class="filter-item">
+            <i class="fa-solid fa-fire"></i>
+            <p>Trending</p>
+          </div>
+          <div class="filter-item">
+            <i class="fa-solid fa-bed"></i>
+            <p>Rooms</p>
+          </div>
+          <div class="filter-item">
+            <i class="fa-solid fa-mountain-city"></i>
+            <p>Hill Stations</p>
+          </div>
+          <div class="filter-item">
+            <i class="fa-solid fa-mountain-sun"></i>
+            <p>Mountains</p>
+          </div>
+          <div class="filter-item">
+            <i class="fa-solid fa-umbrella-beach"></i>
+            <p>Beaches</p>
+          </div>
+          <div class="filter-item">
+            <i class="fa-solid fa-campground"></i>
+            <p>Camping</p>
+          </div>
+          <div class="filter-item">
+            <i class="fa-solid fa-chess-knight"></i>
+            <p>Luxury Resorts</p>
+          </div>
+          <div class="filter-item">
+            <i class="fa-solid fa-tree"></i>
+            <p>Forests</p>
+          </div>
+          <div class="filter-item">
+            <i class="fa-solid fa-tractor"></i>
+            <p>Farms</p>
+          </div>
+          <div class="filter-item">
+            <i class="fa-solid fa-building-columns"></i>
+            <p>Heritage</p>
+          </div>
+          <div class="filter-item">
+            <i class="fa-solid fa-snowflake"></i>
+            <p>Snow Places</p>
+          </div>
+          <div class="filter-item">
+            <i class="fa-solid fa-water"></i>
+            <p>Rivers</p>
+          </div>
+          <div class="filter-item">
+            <i class="fa-solid fa-hiking"></i>
+            <p>Adventure</p>
+          </div>
+          <div class="filter-item">
+            <i class="fa-solid fa-tree"></i>
+            <p>Treehouse</p>
+          </div>
+          <div class="filter-item">
+            <i class="fa-solid fa-chess-rook"></i>
+            <p>Castles</p>
+          </div>
+        </div>
+
+
+
+        <!-- Right Arrow -->
+        <div id="right-arrow" class="arrow-btn right-arrow">
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+
+
+
+      </div>
+
+      <div class="switch-toggel">
+        <div class=" form-check-reverse form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+          <label class="form-check-label" for="flexSwitchCheckDefault">Show total including taxes</label>
+        </div>
+      </div>
+
+    </div>
+
 
 
     <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-xs-1">
       <% for(let listing of allListings) { %>
         <a href="/listings/<%= listing._id %>">
-          <div class="card col listing-card" >
-            <img src="<%= listing.image.url%>" class="card-img-top" alt="Listing_image" style="height: 20rem;" >
+          <div class="card col listing-card">
+            <img src="<%= listing.image.url%>" class="card-img-top" alt="Listing_image" style="height: 20rem;">
             <div class="card-img-overlay"></div>
             <div class="card-body">
               <p class="card-text">
-                <b><%= listing.title %></b><br>
+                <b>
+                  <%= listing.title %>
+                </b><br>
                 &#8377; <%= listing.price.toLocaleString("en-IN") %> / night
+                <i class="tax-info"> &nbsp;+18% GST</i>
               </p>
             </div>
           </div>
         </a>
-        <% } %>    
+        <% } %>
     </div>
 
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const filterScroll = document.getElementById('filter-scroll');
+        const leftArrow = document.getElementById('left-arrow');
+        const rightArrow = document.getElementById('right-arrow');
+        const filterContainer = document.querySelector('.filter-container');
 
+        // Function to check scroll position and update left arrow visibility
+        function checkScrollPosition() {
+          // Show/hide left arrow based on scroll position
+          if (filterScroll.scrollLeft > 0) {
+            leftArrow.classList.add('active');
+          } else {
+            leftArrow.classList.remove('active');
+          }
+        }
 
-    
-    
+        // Show right arrow only on hover
+        filterContainer.addEventListener('mouseenter', function() {
+          // Only show if there's more content to scroll to
+          const maxScrollLeft = filterScroll.scrollWidth - filterScroll.clientWidth - 10;
+          if (filterScroll.scrollLeft < maxScrollLeft) {
+            rightArrow.classList.add('active');
+          }
+        });
+
+        // Hide right arrow when not hovering
+        filterContainer.addEventListener('mouseleave', function() {
+          rightArrow.classList.remove('active');
+        });
+
+        // Scroll left when left arrow is clicked
+        leftArrow.addEventListener('click', function () {
+          filterScroll.scrollBy({
+            left: -150,
+            behavior: 'smooth'
+          });
+        });
+
+        // Scroll right when right arrow is clicked
+        rightArrow.addEventListener('click', function () {
+          filterScroll.scrollBy({
+            left: 150,
+            behavior: 'smooth'
+          });
+        });
+
+        // Check scroll position when scrolling
+        filterScroll.addEventListener('scroll', checkScrollPosition);
+
+        // Check scroll position when window is resized
+        window.addEventListener('resize', checkScrollPosition);
+
+        // Initial check
+        checkScrollPosition();
+      });
+
+      //----------------------------------------------------------------------------------------------------------------------------//
+      // TOGGEL SWITCH //
+
+      const taxSwitch = document.getElementById('flexSwitchCheckDefault');
+      taxSwitch.addEventListener('click', () => {
+       
+        const taxInfo = document.querySelectorAll('.tax-info');
+        taxInfo.forEach((element) => {
+          if (taxSwitch.checked) {
+            element.style.display = 'inline';
+          } else {
+            element.style.display = 'none';
+          }
+        });
+      })
+    </script>
   </body>
-
