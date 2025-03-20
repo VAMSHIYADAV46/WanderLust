@@ -94,3 +94,53 @@ document.addEventListener("DOMContentLoaded", function () {
 //          });
 //      });
 //  }
+
+
+
+//-------------------------------------------------------------------------------------------------------------------//
+//Search Script //
+
+document.addEventListener("DOMContentLoaded", function() {
+  const searchForm = document.getElementById("search-form");
+  const searchInput = document.getElementById("search-input");
+  
+  // Basic form validation
+  searchForm.addEventListener("submit", function(e) {
+    if (searchInput.value.trim() === "") {
+      e.preventDefault();
+      
+      // Show error message
+      const errorMsg = document.createElement("div");
+      errorMsg.className = "alert alert-danger mt-2";
+      errorMsg.textContent = "Please enter a search term";
+      
+      // Remove any existing error messages
+      const existingError = searchForm.querySelector(".alert");
+      if (existingError) {
+        existingError.remove();
+      }
+      
+      searchForm.appendChild(errorMsg);
+      
+      // Remove error after 3 seconds
+      setTimeout(() => {
+        errorMsg.remove();
+      }, 3000);
+    }
+  });
+  
+  // Clear error message when user starts typing
+  searchInput.addEventListener("input", function() {
+    const existingError = searchForm.querySelector(".alert");
+    if (existingError) {
+      existingError.remove();
+    }
+  });
+  
+  // Optional: Update URL with search params when form submitted
+  searchForm.addEventListener("submit", function() {
+    // This will happen before the form submission
+    // We're just letting the normal form submission handle the navigation
+    console.log("Searching for:", searchInput.value);
+  });
+});

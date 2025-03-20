@@ -7,11 +7,16 @@ if (process.env.NODE_ENV != "production") {
 
 
 //Index Route
-module.exports.index= async (req, res) => {
-    const allListings = await Listing.find({});
-    res.render("listings/index.ejs", { allListings });
+module.exports.index = async (req, res) => {
+  try {
+    const listings = await Listing.find({}); // Fetch all listings
+    res.render("listings/index", { listings }); // Pass listings to the template
+  } catch (err) {
+    console.error(err);
+    req.flash("error", "Cannot find listings");
+    res.redirect("/");
   }
-
+};
 
 
 //New Route
@@ -92,3 +97,36 @@ module.exports.deleteListing = async (req, res) => {
     console.log(deletedListing);
     res.redirect("/listings");
   }
+
+
+//Search Route
+module.exports.search = async (req, res) => {
+  try {
+    const { q } = req.query;
+    
+    if (!q) {
+      return res.redirect("/listings");
+    }
+    
+    const searchQuery = {
+      $or: [
+        { title: { $regex: q, $options: "i" } },
+        { location: { $regex: q, $options: "i" } },
+        { description: { $regex: q, $options: "i" } }
+      ]
+    };
+    
+    const listings = await Listing.find(searchQuery);
+    
+    res.render("listings/index", { 
+      listings,  // This is important!
+      searchQuery: q,
+      title: `Search Results for "${q}"` 
+    });
+    
+  } catch (err) {
+    console.error(err);
+    req.flash("error", "Error searching listings");
+    res.redirect("/listings");
+  }
+}

@@ -117,7 +117,7 @@
       margin-bottom: 1rem;
     }
 
-    .switch-toggel{
+    .switch-toggel {
       margin-bottom: 1rem;
       font-size: 1rem;
       margin-left: 2.5rem;
@@ -127,11 +127,11 @@
       padding: 1rem;
     }
 
-    .tax-info{
+    .tax-info {
       display: none;
     }
 
-    .rightArrow{
+    .rightArrow {
       display: block;
     }
   </style>
@@ -300,25 +300,47 @@
 
 
 
-    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-xs-1">
-      <% for(let listing of allListings) { %>
-        <a href="/listings/<%= listing._id %>">
-          <div class="card col listing-card">
-            <img src="<%= listing.image.url%>" class="card-img-top" alt="Listing_image" style="height: 20rem;">
-            <div class="card-img-overlay"></div>
-            <div class="card-body">
-              <p class="card-text">
-                <b>
-                  <%= listing.title %>
-                </b><br>
-                &#8377; <%= listing.price.toLocaleString("en-IN") %> / night
-                <i class="tax-info"> &nbsp;+18% GST</i>
-              </p>
-            </div>
+
+
+    <!-- In views/listings/index.ejs -->
+    <div class="listings-container">
+      <% if (typeof listings !=='undefined' ) { %>
+        <% if (listings.length===0) { %>
+          <div class="alert alert-info">
+            No listings found. Try a different search term.
           </div>
-        </a>
-        <% } %>
+          <% } else { %>
+            <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-xs-1">
+              <% for(let listing of listings) { %>
+                <a href="/listings/<%= listing._id %>">
+                  <div class="card col listing-card">
+                    <img src="<%= listing.image.url%>" class="card-img-top" alt="Listing_image" style="height: 20rem;">
+                    <div class="card-img-overlay"></div>
+                    <div class="card-body">
+                      <p class="card-text">
+                        <b>
+                          <%= listing.title %>
+                        </b><br>
+                        &#8377; <%= listing.price.toLocaleString("en-IN") %> / night
+                          <i class="tax-info"> &nbsp;+18% GST</i>
+                      </p>
+                    </div>
+                  </div>
+                </a>
+                <% } %>
+            </div>
+            <% } %>
+              <% } else { %>
+                <div class="alert alert-warning">
+                  No listings data available.
+                </div>
+                <% } %>
     </div>
+
+
+
+
+
 
     <script>
       document.addEventListener('DOMContentLoaded', function () {
@@ -338,7 +360,7 @@
         }
 
         // Show right arrow only on hover
-        filterContainer.addEventListener('mouseenter', function() {
+        filterContainer.addEventListener('mouseenter', function () {
           // Only show if there's more content to scroll to
           const maxScrollLeft = filterScroll.scrollWidth - filterScroll.clientWidth - 10;
           if (filterScroll.scrollLeft < maxScrollLeft) {
@@ -347,7 +369,7 @@
         });
 
         // Hide right arrow when not hovering
-        filterContainer.addEventListener('mouseleave', function() {
+        filterContainer.addEventListener('mouseleave', function () {
           rightArrow.classList.remove('active');
         });
 
@@ -382,7 +404,7 @@
 
       const taxSwitch = document.getElementById('flexSwitchCheckDefault');
       taxSwitch.addEventListener('click', () => {
-       
+
         const taxInfo = document.querySelectorAll('.tax-info');
         taxInfo.forEach((element) => {
           if (taxSwitch.checked) {

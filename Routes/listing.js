@@ -15,7 +15,8 @@ const upload = multer({ storage })
 
 
 
-
+  // Search route
+  router.get("/search",listingController.search);
 
 
 //Index Route
@@ -62,6 +63,11 @@ router.get("/",wrapAsync(listingController.index));
     isLoggedIn,
     isOwner, 
     wrapAsync(listingController.deleteListing));
+
+
+
+
+
   
 
 module.exports = router;

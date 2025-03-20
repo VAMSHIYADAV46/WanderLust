@@ -44,10 +44,22 @@
         </div>
 
         <div class="navbar-nav search ms-auto">
-          <form class="d-flex" role="search">
-            <input class="form-control me-2 search-input" type="search" placeholder="Search destination" >
-            <button class="btn search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search </button>
-          </form>
+          <div class="search-container">
+            <form id="search-form" action="/listings/search" method="GET">
+              <div class="input-group">
+                <input 
+                  type="text" 
+                  name="q" 
+                  placeholder="Search destinations, hotels, experiences..." 
+                  class="form-control search-input"
+                  id="search-input"
+                >
+                <button class="btn search-btn" type="submit">
+                  <i class="fas fa-search"></i> Search
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
 
         <div class="navbar-nav ms-auto">
