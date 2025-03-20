@@ -1,4 +1,4 @@
-<style>
+<!-- <style>
   .search-btn{
     background-color: #fe424d;
     color: white;
@@ -19,13 +19,13 @@
     border-radius: 25px;
     width: 300px;
     padding: 0.5rem 3rem 0.5rem 6rem;
-    
+  
 
   }
-</style>
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+</style> -->
+<!-- <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
+      <a class="navbar-brand" href="/"><i class="fa-regular fa-compass"></i></a>
       <button 
        class="navbar-toggler"
        type="button" 
@@ -37,10 +37,10 @@
 
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          
-          <a class="nav-link" href="/listings">Explore</a>
-          <a class="nav-link" href="/listings/new">Add Your Place</a>
+        <div class="navbar-nav nav-links">
+          <a class="nav-link nav-item" href="/">Home</a>
+          <a class="nav-link nav-item" href="/listings">Explore</a>
+          <a class="nav-link nav-item" href="/listings/new">Add Your Place</a>
         </div>
 
         <div class="navbar-nav search ms-auto">
@@ -62,15 +62,60 @@
           </div>
         </div>
 
-        <div class="navbar-nav ms-auto">
+        <div class="navbar-nav ms-auto auth-links">
           <% if (!currUser) { %>
-                <a class="nav-link "  href="/signup"><b>Signup</b></a>
-                <a class="nav-link" href="/login"><b>Login</b></a>
+            
+                <a class="nav-link signup-link"  href="/signup"><b>Signup</b></a>
+                <a class="nav-link login-link" href="/login"><b>Login</b></a>
          <% } %>
          <% if (currUser) { %>
-          <a class="nav-link" href="/logout">Logout</a>
+          <a class="nav-link login-link" href="/logout">Logout</a>
           <% } %>
         </div>
       </div>
     </div>
+  </nav> -->
+
+
+<header>
+  <nav class="navbar">
+    <div class="logo">
+      <a class="navbar-brand" href="/"><i class="fa-regular fa-compass"></i></a>
+    </div>
+
+    <div class="nav-links">
+      <a href="/" class="nav-item">Home</a>
+      <a href="/listings" class="nav-item">Explore</a>
+      <a href="/listings/new" class="nav-item">Add Your Place</a>
+    </div>
+    <!-- 
+        <div class="search-container">
+            <form id="search-form" action="/listings/search" method="GET">
+                <input type="text"  class="search-input" name="q" placeholder="Search destinations, hotels, experiences...">
+                <button class="search-btn" type="submit">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </form>
+        </div> -->
+
+
+    <div class="search-container">
+      <form id="search-form" action="/listings/search" method="GET">
+        <input type="text" name="q" placeholder="Search destinations, hotels, experiences...">
+        <button class="search-btn" type="submit">
+          <i class="fas fa-search"></i> Search
+        </button>
+      </form>
+
+    </div>
+
+    <div class="auth-links">
+      <% if (!currUser) { %>
+        <a href="/signup" class="signup-link"><b>Signup</b></a>
+        <a href="/login" class="login-link"><b>Login</b></a>
+        <% } else { %>
+          <a href="/logout" class="logout-link"><b>Logout</b></a>
+          <% } %>
+    </div>
   </nav>
+</header>

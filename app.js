@@ -65,9 +65,6 @@ sessionOptions = {
 }
 
 
-// app.get("/", (req, res) => {
-//   res.send("Hi, I am root");
-// });
 
 
 
@@ -105,6 +102,14 @@ app.use((req,res,next)=>{
 // })
 
 
+app.get('/', (req, res) => {
+  res.render('listings/home.ejs');
+});
+
+app.get('/learn',(req,res)=>{
+  res.render('listings/learn.ejs')
+})
+
 
 app.use("/listings",listingRouter)
 app.use("/listings/:id/reviews",reviewRouter)
@@ -135,11 +140,11 @@ app.all("*",(req,res,next)=>{
 })
 
 
-// app.use((err,req,res,next)=>{
-//   let{status=500,message="SOMETHING WENT WRONG"}=err
-//   res.render("listings/error.ejs",{err})
-//   // res.status(status).send(message);
-// })
+app.use((err,req,res,next)=>{
+  let{status=500,message="SOMETHING WENT WRONG"}=err
+  res.render("listings/error.ejs",{err})
+  // res.status(status).send(message);
+})
 
 
 app.listen(8080, () => {

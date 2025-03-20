@@ -1,0 +1,1129 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    /* Learn More Page Styles */
+    :root {
+        --primary-color: #ff385c;
+        --primary-dark: #e31c5f;
+        --text-color: #222;
+        --text-light: #717171;
+        --background-light: #f7f7f7;
+        --border-color: #ebebeb;
+        --white: #ffffff;
+        --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.08);
+        --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.1);
+        --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.08);
+        --radius-sm: 8px;
+        --radius-md: 12px;
+        --radius-lg: 24px;
+    }
+
+    body {
+        font-family: "Circular", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+            "Helvetica Neue", sans-serif;
+        color: var(--text-color);
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: var(--white);
+    }
+
+    .learn-more-container {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* Hero Section */
+    .hero-section {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+            url("https://images.unsplash.com/photo-1475483768296-6163e08872a1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjN8fHRyYXZlbGxpbmclMjBncm91cHxlbnwwfHwwfHx8MA%3D%3D");
+        background-size: cover;
+        background-position: center;
+        height: 500px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: var(--white);
+        margin-bottom: 60px;
+        position: relative;
+    }
+
+    .hero-content {
+        max-width: 800px;
+        padding: 0 20px;
+    }
+
+    .hero-content h1 {
+        font-size: 48px;
+        font-weight: 700;
+        margin-bottom: 16px;
+    }
+
+    .hero-content p {
+        font-size: 20px;
+        margin-bottom: 30px;
+    }
+
+    /* Section Containers */
+    .section-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .info-section {
+        padding: 80px 0;
+    }
+
+    .info-section h2 {
+        text-align: center;
+        font-size: 36px;
+        margin-bottom: 50px;
+        position: relative;
+    }
+
+    .info-section h2:after {
+        content: "";
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background-color: var(--primary-color);
+    }
+
+    /* Info Cards */
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+    }
+
+    .info-card {
+        background-color: var(--white);
+        border-radius: var(--radius-md);
+        padding: 30px;
+        box-shadow: var(--shadow-md);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-align: center;
+    }
+
+    .info-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .icon-container {
+        width: 80px;
+        height: 80px;
+        background-color: var(--primary-color);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+    }
+
+    .icon-container i {
+        font-size: 32px;
+        color: var(--white);
+    }
+
+    .info-card h3 {
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+
+    .info-card p {
+        color: var(--text-light);
+        font-size: 16px;
+    }
+
+    /* Mission Section */
+    .mission-section {
+        background-color: var(--background-light);
+        padding: 80px 0;
+    }
+
+    .mission-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        align-items: center;
+    }
+
+    .mission-text h2 {
+        font-size: 36px;
+        margin-bottom: 25px;
+        position: relative;
+    }
+
+    .mission-text h2:after {
+        content: "";
+        position: absolute;
+        bottom: -15px;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background-color: var(--primary-color);
+    }
+
+    .mission-text p {
+        margin-bottom: 20px;
+        font-size: 17px;
+        color: var(--text-color);
+    }
+
+    .mission-list {
+        list-style: none;
+        padding: 0;
+        margin: 25px 0;
+    }
+
+    .mission-list li {
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+    }
+
+    .mission-list li i {
+        color: var(--primary-color);
+        margin-right: 10px;
+    }
+
+    .mission-image {
+        position: relative;
+    }
+
+    .image-container {
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+    }
+
+    .mission-img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 0.5s ease;
+    }
+
+    .image-container:hover .mission-img {
+        transform: scale(1.03);
+    }
+
+    /* About Us Section */
+    .about-intro {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto 50px;
+        font-size: 18px;
+        color: var(--text-light);
+    }
+
+    .team-members {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 40px;
+        margin-top: 30px;
+    }
+
+    .team-member {
+        text-align: center;
+        transition: transform 0.3s ease;
+    }
+
+    .team-member:hover {
+        transform: translateY(-5px);
+    }
+
+    .member-image {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto 20px;
+        border: 3px solid var(--primary-color);
+    }
+
+    .member-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .team-member h3 {
+        font-size: 22px;
+        margin-bottom: 5px;
+    }
+
+    .member-title {
+        color: var(--primary-color);
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
+    .member-bio {
+        color: var(--text-light);
+    }
+
+    /* Testimonials Section */
+    .testimonials-section {
+        background-color: var(--background-light);
+        padding: 80px 0;
+    }
+
+    .testimonials-container {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .testimonial-slider {
+        position: relative;
+        overflow: hidden;
+        height: 300px;
+    }
+
+    .testimonial {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 0 20px;
+    }
+
+    .testimonial.active {
+        opacity: 1;
+    }
+
+    .quote-icon {
+        color: var(--primary-color);
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+
+    .testimonial-text {
+        font-size: 22px;
+        font-style: italic;
+        margin-bottom: 30px;
+        max-width: 800px;
+    }
+
+    .testimonial-author {
+        margin-top: 20px;
+    }
+
+    .author-name {
+        font-weight: 600;
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    .author-location {
+        color: var(--text-light);
+    }
+
+    .slider-controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+    }
+
+    .control-btn {
+        background: var(--white);
+        border: 1px solid var(--border-color);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .control-btn:hover {
+        background-color: var(--primary-color);
+        color: var(--white);
+        border-color: var(--primary-color);
+    }
+
+    .slider-dots {
+        display: flex;
+        margin: 0 20px;
+    }
+
+    .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: var(--border-color);
+        margin: 0 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .dot.active {
+        background-color: var(--primary-color);
+    }
+
+    /* Call to Action Section */
+    .cta-section {
+        padding: 100px 0;
+        text-align: center;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+            url("/placeholder.svg?height=600&width=1200");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        color: var(--white);
+    }
+
+    .cta-content {
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .cta-content h2 {
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+
+    .cta-content p {
+        font-size: 18px;
+        margin-bottom: 40px;
+    }
+
+    .cta-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .cta-btn {
+        padding: 14px 30px;
+        border-radius: 30px;
+        font-weight: 600;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+
+    .cta-btn.primary {
+        background-color: var(--primary-color);
+        color: var(--white);
+    }
+
+    .cta-btn.primary:hover {
+        background-color: var(--primary-dark);
+        transform: translateY(-3px);
+    }
+
+    .cta-btn.secondary {
+        background-color: transparent;
+        color: var(--white);
+        border: 2px solid var(--white);
+    }
+
+    .cta-btn.secondary:hover {
+        background-color: var(--white);
+        color: var(--text-color);
+        transform: translateY(-3px);
+    }
+
+    /* Footer */
+    .site-footer {
+        background-color: #222;
+        color: #f5f5f5;
+        padding: 60px 0 20px;
+    }
+
+    .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+        padding: 0 20px;
+    }
+
+    .footer-section h3 {
+        font-size: 18px;
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+    .footer-section h3:after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 30px;
+        height: 2px;
+        background-color: var(--primary-color);
+    }
+
+    .footer-section ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer-section ul li {
+        margin-bottom: 10px;
+    }
+
+    .footer-section ul li a {
+        color: #aaa;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .footer-section ul li a:hover {
+        color: var(--primary-color);
+    }
+
+    .social-links {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .social-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background-color: #333;
+        color: #fff;
+        transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+        background-color: var(--primary-color);
+        transform: translateY(-3px);
+    }
+
+    .newsletter p {
+        margin-bottom: 10px;
+        color: #aaa;
+    }
+
+    .newsletter-form {
+        display: flex;
+    }
+
+    .newsletter-form input {
+        flex: 1;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px 0 0 4px;
+        background-color: #333;
+        color: #fff;
+    }
+
+    .newsletter-form button {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 0 4px 4px 0;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .newsletter-form button:hover {
+        background-color: var(--primary-dark);
+    }
+
+    .footer-bottom {
+        max-width: 1200px;
+        margin: 40px auto 0;
+        padding: 20px 20px 0;
+        border-top: 1px solid #333;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .footer-bottom p {
+        color: #aaa;
+        margin: 0;
+    }
+
+    .footer-links {
+        display: flex;
+        gap: 20px;
+    }
+
+    .footer-links a {
+        color: #aaa;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+        color: var(--primary-color);
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+        .mission-content {
+            grid-template-columns: 1fr;
+        }
+
+        .mission-image {
+            order: -1;
+            margin-bottom: 30px;
+        }
+
+        .hero-content h1 {
+            font-size: 40px;
+        }
+    }
+
+    @media (max-width: 768px) {
+
+        .info-section,
+        .mission-section,
+        .testimonials-section {
+            padding: 60px 0;
+        }
+
+        .hero-section {
+            height: 400px;
+        }
+
+        .hero-content h1 {
+            font-size: 32px;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+        }
+
+        .info-section h2,
+        .mission-text h2,
+        .testimonials-section h2,
+        .cta-content h2 {
+            font-size: 28px;
+        }
+
+        .testimonial-text {
+            font-size: 18px;
+        }
+
+        .cta-buttons {
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .footer-bottom {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .footer-links {
+            justify-content: center;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .hero-content h1 {
+            font-size: 28px;
+        }
+
+        .team-members {
+            grid-template-columns: 1fr;
+        }
+    }
+
+
+
+    /* Navigation Bar */
+    header {
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    nav {
+        display: flex;
+        /* height: 5rem; */
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 5%;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .logo img {
+        height: 40px;
+        border-radius: 50%;
+        background-color: #ff4757;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 40px;
+    }
+
+    .nav-item {
+        color: black;
+        font-weight: 500;
+        transition: color 0.3s;
+    }
+
+    .nav-item:hover {
+        color: #ff4757;
+    }
+
+    .search-container {
+        display: flex;
+        flex: 1;
+        max-width: 500px;
+        margin: 0 20px;
+        border-radius: 30px;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .search-container input {
+        flex: 1;
+        padding: 10px 15px;
+        border: none;
+        outline: none;
+        font-size: 14px;
+    }
+
+    .search-btn {
+        background-color: #ff4757;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: background-color 0.3s;
+    }
+
+    .search-btn:hover {
+        background-color: #ff3040;
+    }
+
+    .auth-links {
+
+        display: flex;
+        gap: 15px;
+    }
+
+    .signup-link,
+    .login-link {
+        color: black;
+        font-weight: 500;
+        transition: color 0.3s;
+    }
+
+    .signup-link:hover,
+    .login-link:hover {
+        color: #ff4757;
+    }
+
+
+    .navbar-brand {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        /* background-color: #ff385c; */
+        color: #ff385c;
+        font-size: 2rem;
+    }
+</style>
+</head>
+
+<body>
+    <!-- Header with Navigation (same as your existing header) -->
+
+
+    <!-- Navigation Bar -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a class="navbar-brand" href="/"><i class="fa-regular fa-compass"></i></a>
+            </div>
+            <div class="nav-links">
+                <a href="/listings" class="nav-item">Explore</a>
+                <a href="/listings/new" class="nav-item">Add Your Place</a>
+            </div>
+            <!-- <div class="search-container">
+                <input type="text" placeholder="Search destinations, hotels, experiences...">
+                <button class="search-btn">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </div> -->
+            <div class="auth-links">
+                <a href="/signup" class="signup-link">Signup</a>
+                <a href="/login" class="login-link">Login</a>
+            </div>
+        </nav>
+    </header>
+
+
+
+    <main class="learn-more-container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>Discover Our Story</h1>
+                <p>Learn more about our mission to make travel accessible and memorable for everyone</p>
+            </div>
+        </section>
+
+        <!-- Why We Created This Section -->
+        <section class="info-section" id="why-section">
+            <div class="section-container">
+                <h2>Why We Created This Platform</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="icon-container">
+                            <i class="fas fa-globe-americas"></i>
+                        </div>
+                        <h3>Promoting Travel</h3>
+                        <p>We believe travel broadens horizons and connects cultures. Our platform was created to
+                            inspire people to explore new destinations and experience the world's diverse beauty.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="icon-container">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h3>Comfortable Stays</h3>
+                        <p>Finding the perfect accommodation can make or break a trip. We've curated a selection of
+                            unique stays that provide comfort, authenticity, and memorable experiences.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="icon-container">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <h3>Community Connection</h3>
+                        <p>Our platform connects travelers with local hosts, creating authentic experiences and
+                            supporting local economies around the world.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Mission Section -->
+        <section class="mission-section">
+            <div class="section-container">
+                <div class="mission-content">
+                    <div class="mission-text">
+                        <h2>Our Mission</h2>
+                        <p>We're on a mission to make travel more accessible, sustainable, and enriching for everyone.
+                            We believe that exploring new places and experiencing different cultures creates a more
+                            connected and understanding world.</p>
+                        <p>Through our platform, we aim to:</p>
+                        <ul class="mission-list">
+                            <li><i class="fas fa-check"></i> Connect travelers with unique accommodations</li>
+                            <li><i class="fas fa-check"></i> Support local communities and economies</li>
+                            <li><i class="fas fa-check"></i> Promote sustainable and responsible travel</li>
+                            <li><i class="fas fa-check"></i> Make travel planning simple and stress-free</li>
+                        </ul>
+                    </div>
+                    <div class="mission-image">
+                        <div class="image-container">
+                            <img src="https://plus.unsplash.com/premium_photo-1663090849746-f006a4e09b8e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                alt="People traveling" class="mission-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section class="info-section" id="about-section">
+            <div class="section-container">
+                <h2>About Us</h2>
+                <div class="team-container">
+                    <p class="about-intro">Our team of travel enthusiasts is dedicated to creating the best platform for
+                        travelers around the world. We combine our passion for exploration with technology to make
+                        travel planning seamless and enjoyable.</p>
+
+                    <!-- <div class="team-members">
+                        <div class="team-member">
+                            <div class="member-image">
+                                <img src="/placeholder.svg?height=200&width=200" alt="Team Member">
+                            </div>
+                            <h3>Jane Doe</h3>
+                            <p class="member-title">Founder & CEO</p>
+                            <p class="member-bio">A passionate traveler who has visited over 50 countries, Jane founded
+                                this platform to share her love for exploration with the world.</p>
+                        </div>
+                        <div class="team-member">
+                            <div class="member-image">
+                                <img src="/placeholder.svg?height=200&width=200" alt="Team Member">
+                            </div>
+                            <h3>John Smith</h3>
+                            <p class="member-title">Head of Destinations</p>
+                            <p class="member-bio">With extensive experience in the hospitality industry, John ensures
+                                that all listings meet our high standards for quality and authenticity.</p>
+                        </div>
+                        <div class="team-member">
+                            <div class="member-image">
+                                <img src="/placeholder.svg?height=200&width=200" alt="Team Member">
+                            </div>
+                            <h3>Emily Chen</h3>
+                            <p class="member-title">Community Manager</p>
+                            <p class="member-bio">Emily works closely with our host community to create meaningful
+                                connections between travelers and local cultures.</p>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials-section">
+            <div class="section-container">
+                <h2>What Our Users Say</h2>
+                <div class="testimonials-container">
+                    <div class="testimonial-slider" id="testimonialSlider">
+                        <div class="testimonial">
+                            <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                            <p class="testimonial-text">"This platform completely transformed how I travel. I've
+                                discovered amazing places I never would have found otherwise!"</p>
+                            <div class="testimonial-author">
+                                <p class="author-name">Sarah J.</p>
+                                <p class="author-location">New York, USA</p>
+                            </div>
+                        </div>
+                        <div class="testimonial">
+                            <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                            <p class="testimonial-text">"As a host, I've met wonderful people from around the world and
+                                shared my city's culture with them. It's been an incredible experience."</p>
+                            <div class="testimonial-author">
+                                <p class="author-name">Miguel R.</p>
+                                <p class="author-location">Barcelona, Spain</p>
+                            </div>
+                        </div>
+                        <div class="testimonial">
+                            <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                            <p class="testimonial-text">"The unique stays available here made our family vacation
+                                unforgettable. The kids still talk about the treehouse we stayed in!"</p>
+                            <div class="testimonial-author">
+                                <p class="author-name">Lisa T.</p>
+                                <p class="author-location">Melbourne, Australia</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider-controls">
+                        <button class="control-btn prev-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+                        <div class="slider-dots" id="sliderDots">
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                        <button class="control-btn next-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="cta-section">
+            <div class="section-container">
+                <div class="cta-content">
+                    <h2>Ready to Start Your Journey?</h2>
+                    <p>Join our community of travelers and hosts to discover amazing destinations and create
+                        unforgettable memories.</p>
+                    <div class="cta-buttons">
+                        <a href="/listings" class="cta-btn primary">Explore Destinations</a>
+                        <a href="/signup" class="cta-btn secondary">Sign Up Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Explore</h3>
+                <ul>
+                    <li><a href="/listings">Destinations</a></li>
+                    <li><a href="/experiences">Experiences</a></li>
+                    <li><a href="/listings/new">Add Your Place</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>About</h3>
+                <ul>
+                    <li><a href="/learn-more#about-section">About Us</a></li>
+                    <li><a href="/learn-more#why-section">Our Mission</a></li>
+                    <li><a href="/careers">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="/help">Help Center</a></li>
+                    <li><a href="/safety">Safety Information</a></li>
+                    <li><a href="/contact">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-pinterest"></i></a>
+                </div>
+                <div class="newsletter">
+                    <p>Subscribe to our newsletter</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Travel Destinations. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Service</a>
+                <a href="/sitemap">Sitemap</a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Testimonial Slider
+            const testimonials = document.querySelectorAll(".testimonial")
+            const dots = document.querySelectorAll(".dot")
+            const prevBtn = document.getElementById("prevBtn")
+            const nextBtn = document.getElementById("nextBtn")
+            let currentIndex = 0
+
+            // Initialize the first testimonial as active
+            testimonials[0].classList.add("active")
+
+            // Function to show a specific testimonial
+            function showTestimonial(index) {
+                // Remove active class from all testimonials and dots
+                testimonials.forEach((testimonial) => {
+                    testimonial.classList.remove("active")
+                })
+                dots.forEach((dot) => {
+                    dot.classList.remove("active")
+                })
+
+                // Add active class to current testimonial and dot
+                testimonials[index].classList.add("active")
+                dots[index].classList.add("active")
+            }
+
+            // Event listeners for dots
+            dots.forEach((dot, index) => {
+                dot.addEventListener("click", () => {
+                    currentIndex = index
+                    showTestimonial(currentIndex)
+                })
+            })
+
+            // Event listeners for prev/next buttons
+            prevBtn.addEventListener("click", () => {
+                currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length
+                showTestimonial(currentIndex)
+            })
+
+            nextBtn.addEventListener("click", () => {
+                currentIndex = (currentIndex + 1) % testimonials.length
+                showTestimonial(currentIndex)
+            })
+
+            // Auto-rotate testimonials every 5 seconds
+            let testimonialInterval = setInterval(() => {
+                currentIndex = (currentIndex + 1) % testimonials.length
+                showTestimonial(currentIndex)
+            }, 5000)
+
+            // Pause auto-rotation when user interacts with controls
+            const sliderControls = document.querySelector(".slider-controls")
+            sliderControls.addEventListener("mouseenter", () => {
+                clearInterval(testimonialInterval)
+            })
+
+            sliderControls.addEventListener("mouseleave", () => {
+                testimonialInterval = setInterval(() => {
+                    currentIndex = (currentIndex + 1) % testimonials.length
+                    showTestimonial(currentIndex)
+                }, 5000)
+            })
+
+            // Smooth scroll for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+                anchor.addEventListener("click", function (e) {
+                    e.preventDefault()
+                    const targetId = this.getAttribute("href")
+                    const targetElement = document.querySelector(targetId)
+
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80, // Offset for fixed header
+                            behavior: "smooth",
+                        })
+                    }
+                })
+            })
+
+            // Animation on scroll
+            const animateOnScroll = () => {
+                const elements = document.querySelectorAll(".info-card, .team-member, .mission-text, .mission-image")
+
+                elements.forEach((element) => {
+                    const elementPosition = element.getBoundingClientRect().top
+                    const windowHeight = window.innerHeight
+
+                    if (elementPosition < windowHeight - 100) {
+                        element.style.opacity = "1"
+                        element.style.transform = "translateY(0)"
+                    }
+                })
+            }
+
+            // Set initial state for animation
+            document.querySelectorAll(".info-card, .team-member, .mission-text, .mission-image").forEach((element) => {
+                element.style.opacity = "0"
+                element.style.transform = "translateY(20px)"
+                element.style.transition = "opacity 0.6s ease, transform 0.6s ease"
+            })
+
+            // Run animation on load and scroll
+            window.addEventListener("load", animateOnScroll)
+            window.addEventListener("scroll", animateOnScroll)
+        })
+
+
+    </script>
+
+    <!-- <script src="learn-more.js"></script> -->
+</body>

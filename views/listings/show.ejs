@@ -30,9 +30,9 @@
 
         <div class="button-container">
           <% if (currUser && currUser._id.equals(listing.owner._id)) { %>
-            <a href="/listings/<%= listing._id %>/edit" class="btn submit-button">Edit this Listing</a>
+            <a href="/listings/<%= listing._id %>/edit" class="btn submit-button">Edit Listing</a>
             <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE" class="d-inline">
-              <button type="submit" class="btn btn-warning delete-button">Delete this Listing</button>
+              <button type="submit" class="btn btn-warning delete-button">Delete Listing</button>
             </form>
             <% } %>
               <button class="btn back-button" onclick="window.location.href='/listings'">Back</button>
