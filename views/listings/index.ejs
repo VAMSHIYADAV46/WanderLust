@@ -134,6 +134,13 @@
     .rightArrow {
       display: block;
     }
+
+
+    /* Add this to your existing <style> section */
+    .filter-item.active {
+      opacity: 1;
+      border-bottom: 2px solid #333;
+    }
   </style>
 
   <body>
@@ -216,63 +223,63 @@
 
         <!-- Filter Items -->
         <div id="filter-scroll" class="filter-scroll">
-          <div class="filter-item">
+          <div class="filter-item" onclick="filterByCategory('trending')">
             <i class="fa-solid fa-fire"></i>
             <p>Trending</p>
           </div>
-          <div class="filter-item">
+          <div class="filter-item" onclick="filterByCategory('rooms')">
             <i class="fa-solid fa-bed"></i>
             <p>Rooms</p>
           </div>
-          <div class="filter-item">
+          <div class="filter-item" onclick="filterByCategory('hill stations')">
             <i class="fa-solid fa-mountain-city"></i>
             <p>Hill Stations</p>
           </div>
-          <div class="filter-item">
+          <div class="filter-item" onclick="filterByCategory('mountains')">
             <i class="fa-solid fa-mountain-sun"></i>
             <p>Mountains</p>
           </div>
-          <div class="filter-item">
+          <div class="filter-item" onclick="filterByCategory('beaches')">
             <i class="fa-solid fa-umbrella-beach"></i>
             <p>Beaches</p>
           </div>
-          <div class="filter-item">
+          <div class="filter-item" onclick="filterByCategory('camping')">
             <i class="fa-solid fa-campground"></i>
             <p>Camping</p>
           </div>
-          <div class="filter-item">
+          <div class="filter-item" onclick="filterByCategory('luxury resorts')">
             <i class="fa-solid fa-chess-knight"></i>
             <p>Luxury Resorts</p>
           </div>
-          <div class="filter-item">
+          <div class="filter-item" onclick="filterByCategory('forests')">
             <i class="fa-solid fa-tree"></i>
             <p>Forests</p>
           </div>
-          <div class="filter-item">
+          <div class="filter-item" onclick="filterByCategory('farms')">
             <i class="fa-solid fa-tractor"></i>
             <p>Farms</p>
           </div>
-          <div class="filter-item">
+          <div class="filter-item" onclick="filterByCategory('heritage')">
             <i class="fa-solid fa-building-columns"></i>
             <p>Heritage</p>
           </div>
-          <div class="filter-item">
+          <div class="filter-item" onclick="filterByCategory('snow places')">
             <i class="fa-solid fa-snowflake"></i>
             <p>Snow Places</p>
           </div>
-          <div class="filter-item">
+          <div class="filter-item" onclick="filterByCategory('rivers')">
             <i class="fa-solid fa-water"></i>
             <p>Rivers</p>
           </div>
-          <div class="filter-item">
+          <div class="filter-item" onclick="filterByCategory('adventure')">
             <i class="fa-solid fa-hiking"></i>
             <p>Adventure</p>
           </div>
-          <div class="filter-item">
+          <div class="filter-item" onclick="filterByCategory('treehouse')">
             <i class="fa-solid fa-tree"></i>
             <p>Treehouse</p>
           </div>
-          <div class="filter-item">
+          <div class="filter-item" onclick="filterByCategory('castles')">
             <i class="fa-solid fa-chess-rook"></i>
             <p>Castles</p>
           </div>
@@ -414,5 +421,33 @@
           }
         });
       })
+
+
+
+      //----------------------------------------------------------------------------------------------------------------------------//
+      // filter script
+      // Add this inside your existing <script> tags
+      function filterByCategory(category) {
+        window.location.href = `/listings?category=${encodeURIComponent(category)}`;
+      }
+
+
+
+
+      // Add this to your DOMContentLoaded event listener
+      // Get the current category from URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const currentCategory = urlParams.get('category');
+
+      // Add active class to the current category
+      if (currentCategory) {
+        document.querySelectorAll('.filter-item').forEach(item => {
+          const itemText = item.querySelector('p').textContent.toLowerCase().trim();
+          if (itemText === currentCategory.toLowerCase()) {
+            item.classList.add('active');
+          }
+        });
+      }
+
     </script>
   </body>

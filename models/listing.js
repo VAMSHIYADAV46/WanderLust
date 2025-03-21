@@ -19,6 +19,16 @@ const listingSchema = new Schema({
     type : Schema.Types.ObjectId,
     ref : "Review"
   }],
+  category: {
+    type: String,
+    enum: [
+      'trending', 'rooms', 'hill stations', 'mountains', 'beaches', 
+      'camping', 'luxury resorts', 'forests', 'farms', 'heritage', 
+      'snow places', 'rivers', 'adventure', 'treehouse', 'castles'
+    ],
+    lowercase: true,
+    required: true
+  },
   owner :{
     type:Schema.Types.ObjectId,
     ref:"User"

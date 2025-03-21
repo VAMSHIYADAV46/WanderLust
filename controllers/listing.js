@@ -7,14 +7,36 @@ if (process.env.NODE_ENV != "production") {
 
 
 //Index Route
+// module.exports.index = async (req, res) => {
+//   try {
+//     const listings = await Listing.find({}); // Fetch all listings
+//     res.render("listings/index", { listings }); // Pass listings to the template
+//   } catch (err) {
+//     console.error(err);
+//     req.flash("error", "Cannot find listings");
+//     res.redirect("/");
+//   }
+// };
+
+//Index Route
 module.exports.index = async (req, res) => {
   try {
-    const listings = await Listing.find({}); // Fetch all listings
-    res.render("listings/index", { listings }); // Pass listings to the template
+    let { category } = req.query;
+    let listings;
+
+    if (category) {
+      // Convert to lowercase and trim for consistent comparison
+      category = category.toLowerCase().trim();
+      listings = await Listing.find({ category: category });
+    } else {
+      listings = await Listing.find({});
+    }
+
+    res.render('listings/index', { listings });
   } catch (err) {
     console.error(err);
-    req.flash("error", "Cannot find listings");
-    res.redirect("/");
+    req.flash('error', 'Error fetching listings');
+    res.redirect('/');
   }
 };
 
